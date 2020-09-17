@@ -1,11 +1,20 @@
 #!/bin/bash
 
+#permet de convertir  le fichier.xls en csv
+
 xls2csv fichier.xls > converted.csv
 
-input="/home/info/Documents/Embauche/converted.csv"
+# chemin pour acceder au fichier.xls
+
+input="/home/info/Documents/fichier.xls/converted.csv"
+# utiliser pour lister les utilisateur
+ 
 array=($(awk -F: '{ print $1 }' /etc/passwd))
 
+# initialisation
+
 i=0;
+# lire la ligne
 
 while IFS=read -r line
 do
@@ -16,6 +25,8 @@ do
                 i=$((i+1))
           fi
      done
+#comparer
+
      if [ "$i" = 0 ]; then
          echo "$line"
          useradd $line
